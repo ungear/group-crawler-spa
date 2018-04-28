@@ -7,12 +7,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React!!</h1>
+          Some text
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <nav className="App-navigation">
+          <ul className="App-navigation__list">
+            <li className="App-navigation__list-item">1</li>
+            <li className="App-navigation__list-item">2</li>
+          </ul>
+        </nav>
       </div>
     );
   }
