@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'normalize.css';
+import { Link } from 'react-router-dom'
+import {Main} from './components/Main.js';
 
 class App extends Component {
   render() {
@@ -12,10 +13,11 @@ class App extends Component {
         </header>
         <nav className="App-navigation">
           <ul className="App-navigation__list">
-            <li className="App-navigation__list-item">1</li>
-            <li className="App-navigation__list-item">2</li>
+            <li className="App-navigation__list-item"><Link to='/'>Home</Link></li>
+            <li className="App-navigation__list-item"><Link to='/tops'>Tops</Link></li>
           </ul>
         </nav>
+        <Main />
       </div>
     );
   }
