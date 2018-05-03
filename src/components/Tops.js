@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setTopByLikes} from '../store/actions';
 
-export class Tops extends Component {
+const mapStateToProps = function(state){
+  return {
+    topByLikes: state.topByLikes,
+  }
+}
+
+const mapDispatchToProps = function (dispatch) {
+  return bindActionCreators({
+    setTopByLikes: setTopByLikes,
+  }, dispatch)
+}
+
+
+class Tops extends Component {
   constructor(){
     super();
     this.state = {
@@ -10,13 +26,15 @@ export class Tops extends Component {
   }
 
   componentDidMount(){
-    this.setState(Object.assign({}, this.state, {loading: true}));
+    if(this.props.topByLikes.length) return;
+
     fetch('http://localhost:3008/api/getTopRecordsByLikes').then(async resp => {
       let topByLikes = await resp.json();
-      this.setState({
-        loading: false,
-        topByLikes
-      })
+      this.props.setTopByLikes(topByLikes)
+      // this.setState({
+      //   loading: false,
+      //   topByLikes
+      // })
     })
   }
 
@@ -25,10 +43,12 @@ export class Tops extends Component {
       <section>
         <div>Loading: {this.state.loading.toString()}</div>
         <div className="top">
-        {this.state.topByLikes.map(x => <div key={x._id}><div>{x.likes}</div><div>{x.text}</div></div>)}
+        {this.props.topByLikes.map(x => <div key={x._id}><div>{x.likes}</div><div>{x.text}</div></div>)}
 
         </div>
       </section> 
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tops)

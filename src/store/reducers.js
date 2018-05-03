@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-function topByLikes(state = null, action){
+function topByLikes(state = [], action){
   switch (action.type) {
     case 'setTopByLikes':
       return action.top
