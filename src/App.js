@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux'
+import app from './store/reducers.js'
 import './App.css';
 import 'normalize.css';
 import { Link } from 'react-router-dom'
 import {Main} from './components/Main.js';
+
+const store = createStore(app)
 
 class App extends Component {
   render() {
