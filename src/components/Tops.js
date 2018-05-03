@@ -11,15 +11,13 @@ export class Tops extends Component {
 
   componentDidMount(){
     this.setState(Object.assign({}, this.state, {loading: true}));
-    setTimeout(_ => {
+    fetch('http://localhost:3008/api/getTopRecordsByLikes').then(async resp => {
+      let topByLikes = await resp.json();
       this.setState({
         loading: false,
-        topByLikes: [
-          {id: 1, name: "Aaaaaa"},
-          {id: 2, name: "Bbbbbbbb"},
-        ]
+        topByLikes
       })
-    }, 2000)
+    })
   }
 
   render(){
@@ -27,7 +25,7 @@ export class Tops extends Component {
       <section>
         <div>Loading: {this.state.loading.toString()}</div>
         <div className="top">
-        {this.state.topByLikes.map(x => <div>{x.name}</div>)}
+        {this.state.topByLikes.map(x => <div key={x._id}><div>{x.likes}</div><div>{x.text}</div></div>)}
 
         </div>
       </section> 
