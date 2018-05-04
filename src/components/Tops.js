@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { setTopByLikes} from '../store/actions';
+import { getTopByLikes} from '../store/actions';
 
 const mapStateToProps = function(state){
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = function(state){
 
 const mapDispatchToProps = function (dispatch) {
   return bindActionCreators({
-    setTopByLikes: setTopByLikes,
+    getTopByLikes: getTopByLikes,
   }, dispatch)
 }
 
@@ -27,15 +27,15 @@ class Tops extends Component {
 
   componentDidMount(){
     if(this.props.topByLikes.length) return;
-
-    fetch('http://localhost:3008/api/getTopRecordsByLikes').then(async resp => {
-      let topByLikes = await resp.json();
-      this.props.setTopByLikes(topByLikes)
-      // this.setState({
-      //   loading: false,
-      //   topByLikes
-      // })
-    })
+    this.props.getTopByLikes();
+    // fetch('http://localhost:3008/api/getTopRecordsByLikes').then(async resp => {
+    //   let topByLikes = await resp.json();
+    //   //this.props.setTopByLikes(topByLikes)
+    //   // this.setState({
+    //   //   loading: false,
+    //   //   topByLikes
+    //   // })
+    // })
   }
 
   render(){

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware  } from 'redux'
 import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
 
 import app from './store/reducers.js'
 import './App.css';
@@ -8,7 +9,12 @@ import 'normalize.css';
 import { Link } from 'react-router-dom'
 import {Main} from './components/Main.js';
 
-const store = createStore(app)
+const store = createStore(
+  app,  
+  applyMiddleware(
+    thunkMiddleware,
+  )
+)
 
 class App extends Component {
   render() {
