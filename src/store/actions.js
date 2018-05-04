@@ -22,10 +22,11 @@ export function getTopByLikes(){
     return fetch('http://localhost:3008/api/getTopRecordsByLikes')
       .then(
         response => response.json(),
-        error => console.log('An error occurred.', error)
+        error => {dispatch(failTopByLikes(error)); return Promise.reject()}
       )
-      .then(json =>
-        dispatch(receiveTopByLikes(json))
+      .then(
+        json => dispatch(receiveTopByLikes(json)),
+        _ => {}
       )
   }
 }
