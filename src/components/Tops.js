@@ -7,6 +7,7 @@ const mapStateToProps = function(state){
   return {
     topByLikes: state.topByLikes.data,
     isFetching: state.topByLikes.isFetching,
+    isFailed: state.topByLikes.isFailed,
   }
 }
 
@@ -26,10 +27,14 @@ class Tops extends Component {
     const loadingIndicator = this.props.isFetching
       ? <div>Loading...</div>
       : '';
+    const errorReport = this.props.isFailed
+      ? <div>Failed to load data</div>
+      : '';
 
     return (
       <section>
         {loadingIndicator}
+        {errorReport}
         <div className="top" style={style_grid}>
           {this.props.topByLikes.map(x => 
             <div key={x._id} style={style_row}>
