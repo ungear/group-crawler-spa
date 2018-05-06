@@ -19,14 +19,17 @@ const mapDispatchToProps = function (dispatch) {
 
 class Tops extends Component {
   componentDidMount(){
-    if(!this.props.topByLikes.length)
-      this.props.getTopByLikes();
+    this.props.getTopByLikes();
   }
 
   render(){
+    const loadingIndicator = this.props.isFetching
+      ? <div>Loading...</div>
+      : '';
+
     return (
       <section>
-        <div>Loading: {this.props.isFetching.toString()}</div>
+        {loadingIndicator}
         <div className="top" style={style_grid}>
           {this.props.topByLikes.map(x => 
             <div key={x._id} style={style_row}>
