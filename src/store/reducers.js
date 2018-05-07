@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {TopByLikes_Request, TopByLikes_Received, TopByLikes_Failed} from "./actions";
+import * as CONST from '../const.js';
 /*
   topByLIkes:{
     isFetching: boolean,
@@ -12,7 +13,12 @@ function topByLikes(state = {isFetching: false, isFailed: false, data: []}, acti
     case TopByLikes_Request:
       return Object.assign({}, state, {isFetching: true})
     case TopByLikes_Received:
-      return Object.assign({}, state, {isFetching: false, isFailed: false, data: action.top})
+      let extendedTop = action.top
+        .map(x => Object.assign({}, x))
+        .map(x => {
+          x.postLink = `https://vk.com/${CONST.VK_GROUP_NAME}?w=wall${CONST.VK_GROUP_ID}_${x._id}`;
+          return x})
+      return Object.assign({}, state, {isFetching: false, isFailed: false, data: extendedTop})
     case TopByLikes_Failed:
       return Object.assign({}, state, {isFetching: false, isFailed: true, data: []})
     default:

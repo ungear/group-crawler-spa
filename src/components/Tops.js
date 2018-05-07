@@ -40,6 +40,9 @@ class Tops extends Component {
             <div key={x._id} style={style_row}>
               <div style={style_id}>{x.likes}</div>
               <div style={style_text}>{x.text}</div>
+              <div style={style_link}>
+                <a href={x.postLink}>link</a>
+              </div>
             </div>
           )}
         </div>
@@ -61,5 +64,8 @@ const style_id = {
 }
 const style_text = {
   flex: "1 1 100%"
+}
+const style_link = {
+  flex: "0 0 50px"
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tops)
