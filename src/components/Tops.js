@@ -35,7 +35,14 @@ class Tops extends Component {
       <section>
         {loadingIndicator}
         {errorReport}
+
         <div className="top" style={style_grid}>
+          <div style={style_row}>
+            <div style={style_id}>Likes</div>
+            <div style={style_text}>Text</div>
+            <div style={style_link}>Post link</div>
+            <div style={style_signer}>Signer link</div>
+          </div>
           {this.props.topByLikes.map(x => 
             <div key={x._id} style={style_row}>
               <div style={style_id}>{x.likes}</div>
@@ -69,9 +76,9 @@ const style_text = {
   flex: "1 1 100%"
 }
 const style_link = {
-  flex: "0 0 50px"
+  flex: "0 0 100px"
 }
 const style_signer = {
-  flex: "0 0 50px"
+  flex: "0 0 100px"
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tops)
