@@ -17,6 +17,9 @@ function topByLikes(state = {isFetching: false, isFailed: false, data: []}, acti
         .map(x => Object.assign({}, x))
         .map(x => {
           x.postLink = `https://vk.com/${CONST.VK_GROUP_NAME}?w=wall${CONST.VK_GROUP_ID}_${x._id}`;
+          x.signerLink = x.signer_id 
+            ?  `https://vk.com/id${x.signer_id }`
+            : null;
           return x})
       return Object.assign({}, state, {isFetching: false, isFailed: false, data: extendedTop})
     case TopByLikes_Failed:

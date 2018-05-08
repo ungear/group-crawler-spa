@@ -43,6 +43,9 @@ class Tops extends Component {
               <div style={style_link}>
                 <a href={x.postLink}>link</a>
               </div>
+              <div style={style_signer}>
+                <a href={x.signerLink}>signer</a>
+              </div>
             </div>
           )}
         </div>
@@ -66,6 +69,9 @@ const style_text = {
   flex: "1 1 100%"
 }
 const style_link = {
+  flex: "0 0 50px"
+}
+const style_signer = {
   flex: "0 0 50px"
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tops)
